@@ -34,6 +34,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import com.brightidea.tireactnative.ReactTiActivity;
 
 @Kroll.proxy(creatableInModule=NappdrawerModule.class)
 public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
@@ -126,7 +127,7 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 			return;
 		}		
 
-		Intent intent = new Intent(topActivity, TiActivity.class);
+		Intent intent = new Intent(topActivity, ReactTiActivity.class);
 		fillIntent(topActivity, intent);
 
 		int windowId = TiActivityWindows.addWindow(this);
