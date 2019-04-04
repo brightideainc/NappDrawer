@@ -126,15 +126,19 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 			Log.w(TAG, "Unable to open drawer. Activity is null");
 			return;
 		}		
+		try {
+			Class<?> ReactTiActivity = Class.forName("com.brightidea.mobile5.ReactTiActivity");
+			Intent intent = new Intent(topActivity, ReactTiActivity);
+			fillIntent(topActivity, intent);
 
-		Intent intent = new Intent(topActivity, ReactTiActivity.class);
-		fillIntent(topActivity, intent);
+			int windowId = TiActivityWindows.addWindow(this);
+			intent.putExtra(TiC.INTENT_PROPERTY_USE_ACTIVITY_WINDOW, true);
+			intent.putExtra(TiC.INTENT_PROPERTY_WINDOW_ID, windowId);
 
-		int windowId = TiActivityWindows.addWindow(this);
-		intent.putExtra(TiC.INTENT_PROPERTY_USE_ACTIVITY_WINDOW, true);
-		intent.putExtra(TiC.INTENT_PROPERTY_WINDOW_ID, windowId);
-
-		topActivity.startActivity(intent);
+			topActivity.startActivity(intent);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
