@@ -1220,6 +1220,11 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     [self.view addGestureRecognizer:tap];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return [otherGestureRecognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]];
+}
+
 -(void)prepareToPresentDrawer:(MMDrawerSide)drawer animated:(BOOL)animated{
     MMDrawerSide drawerToHide = MMDrawerSideNone;
     if(drawer == MMDrawerSideLeft){
