@@ -45,6 +45,11 @@
     }];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return [otherGestureRecognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]];
+}
+
 -(void)dealloc
 {
     [super dealloc];
