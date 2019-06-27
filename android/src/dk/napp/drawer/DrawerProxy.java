@@ -535,4 +535,15 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 	public void setArrowAnimation(Object arg) {
 		setPropertyAndFire(Drawer.PROPERTY_ARROW_ANIMATION, arg);
 	}	
+
+	@Kroll.method
+	public void popToRootWindow() {
+		try {
+			Class<?> ReactTiActivity = Class.forName("com.brightidea.mobile5.ReactTiActivity");
+			this.getActivity().startActivity(new Intent(TiApplication.getAppCurrentActivity(), ReactTiActivity)
+ 			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
