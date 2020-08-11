@@ -132,7 +132,7 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 			fillIntent(topActivity, intent);
 
 			int windowId = TiActivityWindows.addWindow(this);
-			intent.putExtra(TiC.INTENT_PROPERTY_USE_ACTIVITY_WINDOW, true);
+			// intent.putExtra(TiC.INTENT_PROPERTY_USE_ACTIVITY_WINDOW, true);
 			intent.putExtra(TiC.INTENT_PROPERTY_WINDOW_ID, windowId);
 
 			topActivity.startActivity(intent);
@@ -155,7 +155,7 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 		// Push the tab group onto the window stack. It needs to intercept
 		// stack changes to properly dispatch tab focus and blur events
 		// when windows open and close on top of it.
-		activity.addWindowToStack(this);
+		// activity.addWindowToStack(this);
 	}
 
 	@Override
@@ -206,7 +206,8 @@ public class DrawerProxy extends TiWindowProxy implements TiActivityWindow
 		}
 	}
 
-	private void fillIntent(Activity activity, Intent intent)
+	@Override
+	protected void fillIntent(Activity activity, Intent intent)
 	{
 		if (hasProperty(TiC.PROPERTY_FULLSCREEN)) {
 			intent.putExtra(TiC.PROPERTY_FULLSCREEN, TiConvert.toBoolean(getProperty(TiC.PROPERTY_FULLSCREEN)));
